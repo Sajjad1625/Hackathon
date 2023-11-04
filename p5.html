@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permutations</title>
+    <style>
+        /* *{
+            margin: 0%;
+            padding: 0%;
+        } */
+        h1{
+            background-color: #ccd;
+            color: #fff;
+        }
+        .container{
+          display: flex;
+          justify-content: center;
+        }
+        .item{
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            padding: 10px;
+            background-color: #ccc;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+            border-radius: 5px;
+            max-width: 33%;
+        }
+        .container input{
+            margin: 10px;
+            padding: 5px;
+        }
+        .container button{
+            color: blue;
+            background-color: #fff;
+            border: 1px solid blue;
+            padding: 5px;
+        }
+        .container button:hover{
+            color: #fff;
+            background-color: blue;
+        }
+        #result{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Permutations</h1>
+    </center>
+    <hr>
+    <div class="container">
+        <div class="item">
+            <label for="inputArray">Enter array elements (comma-separated):</label>
+            <input type="text" id="inputArray">
+            <button onclick="generatePermutations()">Generate Permutations</button>
+        </div>
+    </div>
+    <p id="result"></p>
+    <script>
+        function generatePermutations() {
+            const input = document.getElementById("inputArray").value;
+            const elements = input.split(',').map(Number);
+
+            function backtrack(current, remaining) {
+                if (remaining.length === 0) {
+                    result.push(current.slice());
+                    return;
+                }
+
+                for (let i = 0; i < remaining.length; i++) {
+                    current.push(remaining[i]);
+                    const newRemaining = remaining.slice(0, i).concat(remaining.slice(i + 1));
+                    backtrack(current, newRemaining);
+                    current.pop();
+                }
+            }
+
+            const result = [];
+            backtrack([], elements);
+
+            document.getElementById("result").innerText = "Permutations: " + JSON.stringify(result);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Parentheses</title>
+    <style>
+        /* *{
+            margin: 0%;
+            padding: 0%;
+        } */
+        h1{
+            background-color: #ccd;
+            color: #fff;
+        }
+        .container{
+          display: flex;
+          justify-content: center;
+        }
+        .item{
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            padding: 10px;
+            background-color: #ccc;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+            border-radius: 5px;
+            max-width: 33%;
+        }
+        .container input{
+            margin: 10px;
+            padding: 5px;
+        }
+        .container button{
+            color: blue;
+            background-color: #fff;
+            border: 1px solid blue;
+            padding: 5px;
+        }
+        .container button:hover{
+            color: #fff;
+            background-color: blue;
+        }
+        #result{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Generate Parentheses</h1>
+    </center>
+    <hr>
+    <div class="container">
+        <div class="item">
+            <label for="numPairs">Enter the number of pairs:</label>
+            <input type="number" id="numPairs" min="1">
+            <button onclick="generateParentheses()">Generate Parentheses</button>
+        </div>
+    </div>
+    <p id="result"></p>
+    <script>
+        function generateParentheses() {
+            const numPairs = parseInt(document.getElementById("numPairs").value);
+            if (isNaN(numPairs) || numPairs < 1) {
+                document.getElementById("result").innerText = "Please enter a valid number of pairs.";
+                return;
+            }
+
+            function backtrack(current, open, close) {
+                if (current.length === numPairs * 2) {
+                    result.push(current);
+                    return;
+                }
+
+                if (open < numPairs) {
+                    backtrack(current + "(", open + 1, close);
+                }
+
+                if (close < open) {
+                    backtrack(current + ")", open, close + 1);
+                }
+            }
+
+            const result = [];
+            backtrack("", 0, 0);
+
+            document.getElementById("result").innerText = "Combinations of well-formed parentheses: " + JSON.stringify(result);
+        }
+    </script>
+</body>
+</html>

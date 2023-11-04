@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integer to Roman</title>
+    <style>
+        /* *{
+            margin: 0%;
+            padding: 0%;
+        } */
+        h1{
+            background-color: #ccd;
+            color: #fff;
+        }
+        .container{
+          display: flex;
+          justify-content: center;
+        }
+        .item{
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            padding: 10px;
+            background-color: #ccc;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+            border-radius: 5px;
+            max-width: 33%;
+        }
+        .container input{
+            margin: 10px;
+            padding: 5px;
+        }
+        .container button{
+            color: blue;
+            background-color: #fff;
+            border: 1px solid blue;
+            padding: 5px;
+        }
+        .container button:hover{
+            color: #fff;
+            background-color: blue;
+        }
+        #result{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+ 
+
+    <script>
+        function convertToRoman(num) {
+    const romanNumerals = {
+        1: 'I',
+        4: 'IV',
+        5: 'V',
+        9: 'IX',
+        10: 'X'
+     
+    };
+
+    const sortedKeys = Object.keys(romanNumerals)
+        .map(Number)
+        .sort((a, b) => b - a);
+
+    let romanNumeral = '';
+
+    for (let i = 0; i < sortedKeys.length; i++) {
+        const key = sortedKeys[i];
+        while (num >= key) {
+        romanNumeral += romanNumerals[key];
+        num -= key;
+        }
+    }
+
+    return romanNumeral;
+    }
+
+    const numberToConvert = prompt('Enter a number:');
+    const romanNumeral = convertToRoman(parseInt(numberToConvert));
+    document.write(`RomanNumeral: ${romanNumeral}`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Indices of Two Numbers</title>
+    <style>
+        /* *{
+            margin: 0%;
+            padding: 0%;
+        } */
+        h1{
+            background-color: #ccd;
+            color: #fff;
+        }
+        .container{
+          display: flex;
+          justify-content: center;
+        }
+        .item{
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            padding: 10px;
+            background-color: #ccc;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+            border-radius: 5px;
+            max-width: 33%;
+        }
+        .container input{
+            margin: 10px;
+            padding: 5px;
+        }
+        .container button{
+            color: blue;
+            background-color: #fff;
+            border: 1px solid blue;
+            padding: 5px;
+        }
+        .container button:hover{
+            color: #fff;
+            background-color: blue;
+        }
+        #result{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Find Indices of Two Numbers</h1>
+    </center>
+    <hr>
+    <div class="container">
+        <div class="item">
+        <label for="numbers">Enter numbers (comma-separated): </label>
+        <input type="text" id="numbers">
+        <label for="target">Enter target sum: </label>
+        <input type="number" id="target">
+        <button onclick="findIndices()">Find Indices</button>
+    </div>
+    </div>
+    <p id="result"></p>
+    <script>
+        function findIndices() {
+            const input = document.getElementById("numbers").value;
+            const target = parseInt(document.getElementById("target").value);
+            const numbersArray = input.split(',').map(Number);
+
+            const indexMap = new Map();
+
+            for (let i = 0; i < numbersArray.length; i++) {
+                const complement = target - numbersArray[i];
+                if (indexMap.has(complement)) {
+                    const complementIndex = indexMap.get(complement);
+                    document.getElementById("result").innerText = `Indices are: ${complementIndex}, ${i}`;
+                    return;
+                }
+                indexMap.set(numbersArray[i], i);
+            }
+
+            document.getElementById("result").innerText = "No indices found for the given target sum.";
+        }
+    </script>
+</body>
+</html>

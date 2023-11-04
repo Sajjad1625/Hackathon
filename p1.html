@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the Missing Number</title>
+    <style>
+        /* *{
+            margin: 0%;
+            padding: 0%;
+        } */
+        h1{
+            background-color: #ccd;
+            color: #fff;
+        }
+        .container{
+          display: flex;
+          justify-content: center;
+        }
+        .item{
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            padding: 10px;
+            background-color: #ccc;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+            border-radius: 5px;
+            max-width: 33%;
+        }
+        .container input{
+            margin: 10px;
+            padding: 5px;
+        }
+        .container button{
+            color: blue;
+            background-color: #fff;
+            border: 1px solid blue;
+            padding: 5px;
+        }
+        .container button:hover{
+            color: #fff;
+            background-color: blue;
+        }
+        #result{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>Find the Missing Number</h1>
+    </center>
+    <hr>
+    <div class="container">
+        <div class="item">
+        <label for="numbers">Enter numbers (comma-separated): </label>
+        <input type="text" id="numbers">
+        <button onclick="findMissingNumber()">Find Number</button>
+        </div>
+    </div>
+    <p id="result"></p>
+    
+    <script>
+        function findMissingNumber() {
+            const input = document.getElementById("numbers").value;
+            const numbersArray = input.split(',').map(Number);
+            for (let i = 1; i <= 10; i++) {
+                if (!numbersArray.includes(i)) {
+                    document.getElementById("result").innerText = "The missing number is: " + i;
+                    return;
+                }
+            }
+            
+            document.getElementById("result").innerText = "No missing number found.";
+        }
+    </script>
+</body>
+</html>
+<!-- integer to Roman -->
+<!-- give an array nums of distinct integers, return all the possible permutations. you can return the answer in any order. -->
+<!-- Generate parentheses: given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses. -->
